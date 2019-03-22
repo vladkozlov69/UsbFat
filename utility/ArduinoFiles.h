@@ -115,12 +115,12 @@ class PrintFile : public FatFile, public Print {
  * \brief Arduino SD.h style File API
  */
 #if ARDUINO_FILE_USES_STREAM
-class File : public FatFile, public Stream {
+class UsbFile : public FatFile, public Stream {
 #else  // ARDUINO_FILE_USES_STREAM
-class File : public FatFile, public Print {
+class UsbFile : public FatFile, public Print {
 #endif  // ARDUINO_FILE_USES_STREAM
  public:
-  File() {}
+  UsbFile() {}
   /**  Create a file object and open it in the current working directory.
    *
    * \param[in] path A path with a valid 8.3 DOS name for a file to be opened.
@@ -129,7 +129,7 @@ class File : public FatFile, public Print {
    * bitwise-inclusive OR of open flags. see
    * FatFile::open(FatFile*, const char*, uint8_t).
    */
-  File(const char* path, uint8_t oflag) {
+  UsbFile(const char* path, uint8_t oflag) {
     open(path, oflag);
   }
   using FatFile::clearWriteError;
@@ -184,8 +184,8 @@ class File : public FatFile, public Print {
    * \param[in] mode open mode flags.
    * \return a File object.
    */
-  File openNextFile(uint8_t mode = O_READ) {
-    File tmpFile;
+  UsbFile openNextFile(uint8_t mode = O_READ) {
+    UsbFile tmpFile;
     tmpFile.openNext(this, mode);
     return tmpFile;
   }

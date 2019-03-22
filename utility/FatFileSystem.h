@@ -80,8 +80,8 @@ class FatFileSystem : public  FatVolume {
    * \param[in] mode open mode flags.
    * \return a File object.
    */
-  File open(const char *path, uint8_t mode = FILE_READ) {
-    File tmpFile;
+  UsbFile open(const char *path, uint8_t mode = FILE_READ) {
+    UsbFile tmpFile;
     tmpFile.open(vwd(), path, mode);
     return tmpFile;
   }  
